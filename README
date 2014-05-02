@@ -1,0 +1,8 @@
+# Sort files from LOST.DIR
+
+Quick script to sort files found in Android's LOST.DIR directory. This directory is where files recovered during fsck will occasionally wind up.
+
+Currently handles mp3 and mp4 audio files correctly, restoring them to <dest>/mp3/artist/album/track.ext. Other files are simply given a correct extension and moved to a sensible directory, ex: <dest>/pdf/XYZ.pdf
+
+# Generally good ideas for restoring from corrupted media
+If you're attempting to recover data from known (or suspected to be) failing hardware it's usually a good idea to make an image of the affected media, then work off that image. Use `dd if=/dev/my_sd_card of=/path/to/sd_backup.img'` to create the disk image, then use `mount -o loop,ro /path/to/sd_backup.img /mnt/sd_recovery`
