@@ -1,0 +1,4 @@
+argparse==1.2.1
+filemagic==1.6
+ipython==2.0.0
+mutagen==1.22
