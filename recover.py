@@ -8,6 +8,7 @@ import argparse
 from mutagen.easyid3 import EasyID3
 from mutagen.easymp4 import EasyMP4
 import mutagen
+import shutil
 
 import pprint
 pp = pprint.PrettyPrinter()
@@ -46,7 +47,10 @@ def handle_mp3(filename):
     artist_dir = os.path.join(mp3_dir, artist)
     final_path = os.path.join(artist_dir, album, track_file)
 
-    os.renames(filename, final_path)
+    #os.renames(filename, final_path)
+    if not os.path.isdir(os.path.dirname(final_path)):
+        os.makedirs(os.path.dirname(final_path))
+    shutil.copy(filename, final_path)
     print final_path
 
 
@@ -71,15 +75,21 @@ def handle_mp4(filename):
     artist_dir = os.path.join(mp4_dir, artist)
     final_path = os.path.join(artist_dir, album, track_file)
 
-    os.renames(filename, final_path)
+    #os.renames(filename, final_path)
+    if not os.path.isdir(os.path.dirname(final_path)):
+        os.makedirs(os.path.dirname(final_path))
+    shutil.copy(filename, final_path)
     print final_path
 
 
 def handle_mv(filename, dir):
     _fn = '%s.%s' % (os.path.basename(filename), dir)
-    new_path = os.path.join(recover_dir, dir, _fn)
-    os.renames(filename, new_path)
-    print "Renamed", filename, new_path
+    final_path = os.path.join(recover_dir, dir, _fn)
+    #os.renames(filename, final_path)
+    if not os.path.isdir(os.path.dirname(final_path)):
+        os.makedirs(os.path.dirname(final_path))
+    shutil.copy(filename, final_path)
+    print "Renamed", filename, final_path
 
 
 seen_types = {}
